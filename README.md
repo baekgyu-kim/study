@@ -15,7 +15,7 @@
 >#### Frontend
 >> * HTML Template : PUG  
 >> * Style : SCSS   
->> * React 등의 Frontend 라이브러리를 사용하지 않아서 webpack을 따로 설치/설정해서 사용 (추후 React 적용 에정)
+>> * React 등의 Frontend 라이브러리를 사용하지 않아서 webpack을 따로 설치/설정해서 사용   
 >##### 기타 사용한 node package들
 >> * bcypt : 사용자의 pw를 DB에 저장할 때 hashing할 때 사용하기 위함   
 >> * dotenv : DB URL, Session Secret등의 값을 환경변수에 넣어 사용하기 위함  
