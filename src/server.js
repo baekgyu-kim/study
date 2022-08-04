@@ -5,6 +5,10 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 
 import "./db";
+import rootRouter from "./routers/rootRouter";
+import ownerRouter from "./routers/ownerRouter";
+import walkerRouter from "./routers/walkerRouter";
+import { saveSessionToLocal } from "./middlewares";
 
 const app = express();
 
@@ -20,7 +24,11 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("src/views/img"));
+app.use("/", express.static("src/views/img"));
+app.use("/user", express.static("src/views/img"));
+app.use("/owner", express.static("src/views/img"));
+app.use("/owner/dog", express.static("src/views/img"));
+app.use("/walker", express.static("src/views/img"));
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
@@ -31,7 +39,8 @@ app.use(
         }),
     })
 );
+app.use(saveSessionToLocal);
 
-app.get("/", (req, res) => {
-    return res.render("home", { pageTitle: "Home" });
-});
+app.use("/", rootRouter);
+app.use("/owner", ownerRouter);
+app.use("/walker", walkerRouter);

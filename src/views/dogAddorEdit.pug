@@ -1,0 +1,31 @@
+extends base.pug
+
+block content
+    if errorMessage
+        h3=errorMessage
+    else
+        if add_or_edit === "add"
+            h3 등록할 강아지 정보를 입력해주세요
+            form(method="POST")
+                label(for="dogName") 강아지 이름
+                input(placeholder="강아지 이름", id = "dogName",name="dogName", type="text", required)
+                label(for="birthday") 강아지 생일
+                input(placeholder="강아지 생일", id = "birthday", name="birthday", type="date", required)
+                label(for="breed") 강아지 견종
+                input(placeholder="강아지 견종", id = "breed",name="breed", type="text", required)
+                label(for="weight") 강아지 몸무게(kg)
+                input(placeholder="강아지 몸무게", id = "weight",name="weight", type="number", required)
+                input(type="submit", value="등록")
+        else
+            h3 수정할 강아지 정보를 입력해주세요
+            form(method="POST", action = "edit")
+                input(type = "hidden", name="originalDog_id" value=originalDog._id)
+                label(for="dogName") 강아지 이름
+                input(placeholder=originalDog.dogName, id = "dogName",name="dogName", type="text", required)
+                label(for="birthday") 강아지 생일
+                input(placeholder=originalDog.birthday, id = "birthday", name="birthday", type="date", required)
+                label(for="breed") 강아지 견종
+                input(placeholder=originalDog.breed, id = "breed",name="breed", type="text", required)
+                label(for="weight") 강아지 몸무게(kg)
+                input(placeholder=originalDog.weight, id = "weight",name="weight", type="number", required)
+                input(type="submit", value="수정")

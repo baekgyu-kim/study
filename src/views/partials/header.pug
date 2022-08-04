@@ -1,10 +1,26 @@
 header
     nav
         ul
+
             li
-                a(href="/user/login") Login
-            li
-                a(href="/user/signup") Signup
-            li
-                a(href="/user/profile") Profile
+                a(href="/") 
+                    img(src= "logo.png" width = "50", height = "50")
+            if loggedIn
+                li
+                    a(href="/logout") 로그아웃
+                li
+                    a(href="/account") 회원정보 수정
+                if loggedInUser.userType === "보호자"
+                    li
+                        a(href="/owner") 프로필(#{loggedInUser.id}보호자님)
+                else
+                    li
+                        a(href="/walker") 프로필(#{loggedInUser.id}선생님)
+
+            else
+                li
+                    a(href="/login") 로그인
+                li
+                    a(href="/signup") 회원가입
+
             

@@ -1,0 +1,22 @@
+extends base.pug
+
+block content
+    h1 회원가입
+    if errorMessage 
+        h3=errorMessage
+    form(method="POST")
+        label(for="email") 이메일
+        input(placeholder="이메일", id = "email", name="email", type="text", required)
+        label(for="id") 아이디
+        input(placeholder="아이디", id = "id",name="id", type="text", required)
+        label(for="pw") 비밀번호
+        input(placeholder="비밀번호", id = "pw",name="pw", type="text", required)
+        label(for="confirmpw") 비밀번호 확인
+        input(placeholder="비밀번호 확인", id = "confirmpw",name="confirmpw", type="text", required)
+        label(for="location") 서비스 사용 지역 (예 : 강남구 / 수원시 / 가평군)
+        input(placeholder="서비스 사용 지역", id = "location",name="location", type="text", required)
+        input(type="submit", name="userType", value="보호자 계정 생성")
+        input(type="submit", name="userType",value="산책 선생님 계정 생성")
+    div
+        span 계정이 있으신가요?
+        a(href="/login") 로그인 &rarr;

@@ -1,0 +1,7 @@
+mixin dog(dog)
+    div
+        hr
+        span #{`강이지 이름 : ${dog.dogName}`}
+        p #{`생일 : ${dog.birthday}, 나이 : ${Number(new Date().getFullYear()) - Number(dog.birthday.split("-")[0])}살, 종 : ${dog.breed} `}
+
+
