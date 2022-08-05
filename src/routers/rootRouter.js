@@ -18,7 +18,7 @@ rootRouter.route("/signup").all(onlyLoggedOut).get(getSignup).post(postSignup);
 rootRouter.route("/login").all(onlyLoggedOut).get(getLogin).post(postLogin);
 rootRouter.route("/logout").get(onlyLoggedIn, getLogout);
 rootRouter
-    .route("/account")
+    .route("/accountInfo")
     .get(getAccountInfoChange)
     .post(postAccountInfoChange);
 

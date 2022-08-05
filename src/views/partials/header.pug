@@ -9,7 +9,7 @@ header
                 li
                     a(href="/logout") 로그아웃
                 li
-                    a(href="/account") 회원정보 수정
+                    a(href="/accountInfo") 회원정보 수정
                 if loggedInUser.userType === "보호자"
                     li
                         a(href="/owner") 프로필(#{loggedInUser.id}보호자님)

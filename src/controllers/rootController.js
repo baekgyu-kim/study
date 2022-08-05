@@ -2,13 +2,13 @@ import User from "../models/User";
 import bcrypt from "bcrypt";
 
 export const getHome = async (req, res) => {
-    const loggedInUser_id = req.session.user._id;
-    const loggedInUser = await User.findById(loggedInUser_id);
-    if (loggedInUser === undefined) {
+    if (req.session.user === undefined) {
         return res.render("home", {
             pageTitle: "DogWalk",
         });
     } else {
+        const loggedInUser_id = req.session.user._id;
+        const loggedInUser = await User.findById(loggedInUser_id);
         if (loggedInUser.userType === "산책 선생님") {
             if (loggedInUser.walkerDogSize && loggedInUser.walkerInro) {
                 return res.render("home", {
@@ -115,9 +115,53 @@ export const getLogout = (req, res) => {
 };
 
 export const getAccountInfoChange = (req, res) => {
-    return res.send("아직만드는중");
+    const loggedInUser = req.session.user;
+    return res.render("editProfile", {
+        pageTitle: "회원정보 수정",
+        loggedInUser,
+    });
 };
 
-export const postAccountInfoChange = (req, res) => {
-    return res.send("아직만드는중");
+export const postAccountInfoChange = async (req, res) => {
+    const loggedInUser = req.session.user;
+    const user = await User.findById(loggedInUser._id);
+    const { nowPW, newPW, newConfirmPW, newLocation } = req.body;
+    const nowPWCorrect = await bcrypt.compare(nowPW, user.pw);
+    if (nowPWCorrect === false) {
+        return res.status(400).render("editProfile", {
+            pageTitle: "회원정보 수정",
+            errorMessage: "현재 비밀번호를 잘못 입력하셨습니다.",
+        });
+    } else {
+        if (newPW !== newConfirmPW) {
+            return res.status(400).render("editProfile", {
+                pageTitle: "회원정보 수정",
+                errorMessage:
+                    "수정할 비밀번호와 비밀번호 확인이 일치하지 않습니다.",
+            });
+        } else {
+            user.pw = newPW;
+            user.location = newLocation;
+            await user.save();
+            return res.redirect("/logout");
+        }
+        // const updateUser = await User.findByIdAndUpdate(
+        //         loggedInUser._id,
+        //         {
+        //             userType = loggedInUser.userType,
+        //             email = loggedInUser.email,
+        //             id = loggedInUser.id,
+        //             pw = loggedInUser.userType,
+        //         }
+        // )
+    }
+
+    // userType: { type: String, required: true },
+    // email: { type: String, required: true, unique: true },
+    // id: { type: String, required: true, unique: true },
+    // pw: { type: String, required: true },
+    // location: { type: String, required: true },
+    // walkerDogSize: { type: String },
+    // walkerIntro: { type: String },
+    // ownerDogArray: [{ type: mongoose.Schema.Types.ObjectId, ref: "Dog" }],
 };

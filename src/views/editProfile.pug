@@ -1,0 +1,22 @@
+extends base.pug
+
+block content
+    if errorMessage
+        h3=errorMessage
+    h3 #{loggedInUser.id}#{loggedInUser.userType}님의 회원정보 수정 페이지입니다.
+    ul
+        li 아이디 : #{loggedInUser.id}
+        li 이메일 : #{loggedInUser.email}
+    hr
+    h3 수정할 계정 정보를 입력해주세요
+    form(method="POST")
+        label(for="nowPW") 현재 비밀번호
+        input(id = "nowPW",name="nowPW", type="text", required)
+        label(for="newPW") 비밀번호 변경
+        input(id = "newPW",name="newPW", type="text", required)
+        label(for="newConfirmPW") 비밀번호 변경 확인
+        input(id = "newConfirmPW",name="newConfirmPW", type="text", required)
+        label(for="newLocation") 서비스 사용 지역 변경
+        input(value=loggedInUser.location, id = "newLocation", name="newLocation", type="text", required)
+        input(type="submit", value="수정")
+        
