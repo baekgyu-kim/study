@@ -11,7 +11,7 @@
 ### 사용 스택
 >#### Backend
 >> * 서버 : Node.js, Express.  
->> * DB : Mongo DB
+>> * DB : Mongo DB (mongoose로 연결해서 사용)
 >#### Frontend
 >> * HTML Template : PUG  
 >> * Style : SCSS   
