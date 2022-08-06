@@ -2,13 +2,6 @@
 
 🐶Dog owner &amp; Dog walker matching service🐶
 
-#### 아직 development 단계
-
-> 배포 전 작업물 확인 방법
->
-> 1. 2개의 terminal에서 각각 "npm run dev_server", "npm run dev_assets" 실행
-> 2. http://localhost:4000 에서 작업물 확인
-
 #### 프로젝트 개요
 
 > 반려견을 기르는 사람들 중 바빠서 매일 산책을 시키기 어려운 경우 많음  
