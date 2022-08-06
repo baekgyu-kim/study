@@ -6,8 +6,8 @@
 
 > 배포 전 작업물 확인 방법
 >
-> > 1. 2개의 terminal에서 각각 npm run dev_server, npm run dev_assets 실행
-> > 2. http://localhost:4000에서 작업물 확인
+> 1. 2개의 terminal에서 각각 "npm run dev_server", "npm run dev_assets" 실행
+> 2. http://localhost:4000 에서 작업물 확인
 
 #### 프로젝트 개요
 
