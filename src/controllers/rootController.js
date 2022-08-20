@@ -75,7 +75,11 @@ export const postSignup = async (req, res) => {
             location,
             dogSize: undefined,
         });
-        return res.redirect("login");
+        return res.render("login", {
+            pageTitle: "로그인",
+            errorMessage:
+                "회원가입에 성공했습니다. 로그인 해서 서비스를 이용해보세요!",
+        });
     } catch (error) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
@@ -145,23 +149,5 @@ export const postAccountInfoChange = async (req, res) => {
             await user.save();
             return res.redirect("/logout");
         }
-        // const updateUser = await User.findByIdAndUpdate(
-        //         loggedInUser._id,
-        //         {
-        //             userType = loggedInUser.userType,
-        //             email = loggedInUser.email,
-        //             id = loggedInUser.id,
-        //             pw = loggedInUser.userType,
-        //         }
-        // )
     }
-
-    // userType: { type: String, required: true },
-    // email: { type: String, required: true, unique: true },
-    // id: { type: String, required: true, unique: true },
-    // pw: { type: String, required: true },
-    // location: { type: String, required: true },
-    // walkerDogSize: { type: String },
-    // walkerIntro: { type: String },
-    // ownerDogArray: [{ type: mongoose.Schema.Types.ObjectId, ref: "Dog" }],
 };
