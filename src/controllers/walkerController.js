@@ -1,5 +1,4 @@
 import User from "../models/User";
-import Dog from "../models/Dog";
 
 export const getWalkerProfile = (req, res) => {
     return res.render("profile", { pageTitle: "프로필" });
@@ -17,17 +16,41 @@ export const getInfo = async (req, res) => {
             errorMessage,
         });
     }
-    return res.render("walkerInfo", { pageTitle: "선생님 정보" });
+    return res.render("walkerInfo", {
+        pageTitle: "선생님 정보",
+        walkerIntro,
+        walkerDogSize,
+    });
 };
 
-export const postInfo = (req, res) => {
-    return res.send("아직만드는중");
+export const getEdit = async (req, res) => {
+    const user_id = req.session.user._id;
+    const user = await User.findById(user_id);
+    const { walkerDogSize, walkerIntro } = user;
+    return res.render("walkerEdit", {
+        pageTitle: "선생님 정보 관리",
+        walkerDogSize,
+        walkerIntro,
+    });
 };
 
-export const getEdit = (req, res) => {
-    return res.send("아직만드는중");
-};
+export const postEdit = async (req, res) => {
+    const user_id = req.session.user._id;
+    const user = await User.findById(user_id);
+    const { walkerDogSize, walkerIntro } = req.body;
+    await User.findByIdAndUpdate(
+        user_id,
+        {
+            userType: user.userType,
+            email: user.email,
+            id: user.id,
+            pw: user.pw,
+            location: user.location,
+            walkerDogSize,
+            walkerIntro,
+        },
+        { new: true }
+    );
 
-export const postEdit = (req, res) => {
-    return res.send("아직만드는중");
+    return res.redirect("/walker/info");
 };
