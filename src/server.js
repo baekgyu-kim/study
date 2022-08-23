@@ -8,6 +8,7 @@ import "./db";
 import rootRouter from "./routers/rootRouter";
 import ownerRouter from "./routers/ownerRouter";
 import walkerRouter from "./routers/walkerRouter";
+import matchRouter from "./routers/matchRouter";
 import { saveSessionToLocal } from "./middlewares";
 
 const app = express();
@@ -44,3 +45,4 @@ app.use(saveSessionToLocal);
 app.use("/", rootRouter);
 app.use("/owner", ownerRouter);
 app.use("/walker", walkerRouter);
+app.use("/match", matchRouter);

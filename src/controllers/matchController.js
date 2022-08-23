@@ -1,1 +1,6 @@
-//보호자-훈련사 매칭을 위한 Controllers
+import User from "../models/User";
+import Dog from "../models/Dog";
+
+export const getMatch = (req, res) => {
+    return res.render("match", { pageTitle: "매칭" });
+};
