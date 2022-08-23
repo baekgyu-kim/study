@@ -1,10 +1,6 @@
 import User from "../models/User";
 import Dog from "../models/Dog";
 
-export const getOwnerProfile = (req, res) => {
-    return res.render("profile", { pageTitle: "프로필" });
-};
-
 export const getDog = async (req, res) => {
     const user_id = req.session.user._id;
     const user = await User.findById(user_id).populate("ownerDogArray");

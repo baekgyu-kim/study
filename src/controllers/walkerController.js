@@ -1,9 +1,5 @@
 import User from "../models/User";
 
-export const getWalkerProfile = (req, res) => {
-    return res.render("profile", { pageTitle: "프로필" });
-};
-
 export const getInfo = async (req, res) => {
     const user_id = req.session.user._id;
     const user = await User.findById(user_id);

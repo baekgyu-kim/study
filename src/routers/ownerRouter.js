@@ -1,7 +1,6 @@
 import express from "express";
 
 import {
-    getOwnerProfile,
     getDog,
     postDog,
     getDogAdd,
@@ -11,8 +10,7 @@ import {
 
 const ownerRouter = express.Router();
 
-ownerRouter.route("/").get(getOwnerProfile);
-ownerRouter.route("/dog").get(getDog).post(postDog);
+ownerRouter.route("/dog/info").get(getDog).post(postDog);
 ownerRouter.route("/dog/add").get(getDogAdd).post(postDogAdd);
 ownerRouter.route("/dog/edit").post(postDogEdit);
 

@@ -12,10 +12,10 @@ header
                     a(href="/accountInfo") 회원정보 수정
                 if loggedInUser.userType === "보호자"
                     li
-                        a(href="/owner") 프로필(#{loggedInUser.id}보호자님)
+                        a(href="/owner/dog/info") 프로필(#{loggedInUser.id}보호자님)
                 else
                     li
-                        a(href="/walker") 프로필(#{loggedInUser.id}선생님)
+                        a(href="/walker/info") 프로필(#{loggedInUser.id}선생님)
 
             else
                 li
