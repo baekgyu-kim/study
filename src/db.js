@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-});
+mongoose.connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.DB_NAME}.jlmzdk5.mongodb.net/?retryWrites=true&w=majority`,
+    {
+        useNewUrlParser: true,
+    }
+);
 
 const db = mongoose.connection;
 

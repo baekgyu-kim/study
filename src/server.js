@@ -15,6 +15,7 @@ const app = express();
 
 const PORT = 4000;
 const logger = morgan("dev");
+const mongoUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.DB_NAME}.jlmzdk5.mongodb.net/?retryWrites=true&w=majority`;
 
 app.listen(PORT, () => {
     console.log(`✅ Server listenting on http://localhost:${PORT} 🚀`);
@@ -36,7 +37,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
-            mongoUrl: process.env.DB_URL,
+            mongoUrl,
         }),
     })
 );
