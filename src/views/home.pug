@@ -2,7 +2,7 @@ extends base.pug
 
 block content
     if loggedIn
-        if loggedInUser.userType === "보호자"
+        if loggedInUser.userType === "owner"
             if infoErrorMessage
                 h3=infoErrorMessage
                 div
