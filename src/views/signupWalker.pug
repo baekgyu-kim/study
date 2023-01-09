@@ -1,0 +1,21 @@
+extends base.pug
+
+block content
+    h1 회원가입
+    if errorMessage 
+        h3=errorMessage
+    form(method="POST")
+        input(type="hidden", name="userType", value=userType)
+        label(for="email") 이메일
+        input(placeholder="이메일", id = "email", name="email", type="text", required)
+        label(for="email") 아이디
+        input(placeholder="아이디", id = "id", name="id", type="text", required)
+        label(for="pw") 비밀번호
+        input(placeholder="비밀번호", id = "pw",name="pw", type="text", required)
+        label(for="confirmpw") 비밀번호 확인
+        input(placeholder="비밀번호 확인", id = "confirmpw",name="confirmpw", type="text", required)
+        label(for="location") 서비스 사용 지역
+        input(placeholder="서비스 사용 지역", id = "location",name="location", type="text", required)
+        label(for="intro") 자기소개
+        input(placeholder="자기소개", id = "intro",name="intro", type="text", required)
+        input(type="submit", name="userType", value="계정 생성")

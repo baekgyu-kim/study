@@ -10,8 +10,11 @@ block content
         hr
         h4 선생님 소개
         p=walkerIntro
-        h4 산책 가능 강아지 크기
-        p=walkerDogSize
+        h4 서비스 지역
+        p=location
     hr
-    a(href="edit") 선생님 정보 관리하러 가기 &rarr;
 
+    if errorMessage
+        a(href="edit") 선생님 소개 등록하러 가기 &rarr;
+    else
+        a(href="edit") 선생님 소개 수정하러 가기 &rarr;

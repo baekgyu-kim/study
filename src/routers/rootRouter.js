@@ -1,8 +1,11 @@
 import express from "express";
 import {
     getHome,
-    getSignup,
-    postSignup,
+    getSignupType,
+    getSignupOwner,
+    postSignupOwner,
+    getSignupWalker,
+    postSignupWalker,
     getLogin,
     postLogin,
     getLogout,
@@ -14,7 +17,17 @@ import { onlyLoggedIn, onlyLoggedOut } from "../middlewares";
 const rootRouter = express.Router();
 
 rootRouter.route("/").get(getHome);
-rootRouter.route("/signup").all(onlyLoggedOut).get(getSignup).post(postSignup);
+rootRouter.route("/signupType").get(getSignupType);
+rootRouter
+    .route("/signupOwner")
+    .all(onlyLoggedOut)
+    .get(getSignupOwner)
+    .post(postSignupOwner);
+rootRouter
+    .route("/signupWalker")
+    .all(onlyLoggedOut)
+    .get(getSignupWalker)
+    .post(postSignupWalker);
 rootRouter.route("/login").all(onlyLoggedOut).get(getLogin).post(postLogin);
 rootRouter.route("/logout").get(onlyLoggedIn, getLogout);
 rootRouter

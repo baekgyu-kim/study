@@ -3,7 +3,7 @@ extends base.pug
 block content
     h3 #{loggedInUser.id}님의 계정입니다
     div
-        if loggedInUser.userType === "보호자"
+        if loggedInUser.userType === "owner"
             a(href="dog") 나의 강아지 보러가기
         else
             a(href="info") 선생님 정보 관리하기

@@ -1,5 +1,5 @@
 header
-    nav
+    nav(style="margin-bottom : 0px")
         ul
 
             li
@@ -10,7 +10,7 @@ header
                     a(href="/logout") 로그아웃
                 li
                     a(href="/accountInfo") 회원정보 수정
-                if loggedInUser.userType === "보호자"
+                if loggedInUser.userType === "owner"
                     li
                         a(href="/owner/dog/info") 강아지 관리(#{loggedInUser.id}보호자님)
                 else
@@ -21,6 +21,7 @@ header
                 li
                     a(href="/login") 로그인
                 li
-                    a(href="/signup") 회원가입
+                    a(href="/signupType") 회원가입
+    hr(style="border-top: 2px solid")
 
             

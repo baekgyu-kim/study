@@ -3,10 +3,10 @@ import User from "../models/User";
 export const getInfo = async (req, res) => {
     const user_id = req.session.user._id;
     const user = await User.findById(user_id);
-    const { walkerIntro, walkerDogSize } = user;
-    if (walkerIntro === undefined || walkerDogSize === undefined) {
+    const { walkerIntro, location } = user;
+    if (walkerIntro === undefined) {
         const errorMessage =
-            "아직 선생님 정보가 등록되지 않았습니다. 선생님 정보를 먼저 등록해주세요.";
+            "아직 선생님 소개가 등록되지 않았습니다. 선생님 소개를 먼저 등록해주세요.";
         return res.render("walkerInfo", {
             pageTitle: "선생님 정보",
             errorMessage,
@@ -15,25 +15,35 @@ export const getInfo = async (req, res) => {
     return res.render("walkerInfo", {
         pageTitle: "선생님 정보",
         walkerIntro,
-        walkerDogSize,
+        location,
     });
 };
 
 export const getEdit = async (req, res) => {
     const user_id = req.session.user._id;
     const user = await User.findById(user_id);
-    const { walkerDogSize, walkerIntro } = user;
-    return res.render("walkerEdit", {
-        pageTitle: "선생님 정보 관리",
-        walkerDogSize,
-        walkerIntro,
-    });
+    const { walkerIntro, location } = user;
+    if (walkerIntro === undefined) {
+        return res.render("walkerEdit", {
+            pageTitle: "선생님 정보 등록",
+            walkerIntro: "선생님 소개를 등록해주세요",
+            location,
+            add_or_edit: "add",
+        });
+    } else {
+        return res.render("walkerEdit", {
+            pageTitle: "선생님 정보 수정",
+            walkerIntro,
+            location,
+            add_or_edit: "edit",
+        });
+    }
 };
 
 export const postEdit = async (req, res) => {
     const user_id = req.session.user._id;
     const user = await User.findById(user_id);
-    const { walkerDogSize, walkerIntro } = req.body;
+    const { walkerIntro } = req.body;
     await User.findByIdAndUpdate(
         user_id,
         {
@@ -42,7 +52,6 @@ export const postEdit = async (req, res) => {
             id: user.id,
             pw: user.pw,
             location: user.location,
-            walkerDogSize,
             walkerIntro,
         },
         { new: true }
