@@ -1,0 +1,14 @@
+extends base.pug
+
+block content
+    h1 회원가입할 계정 종류를 선택해 주세요
+    if errorMessage 
+        h3=errorMessage
+    div
+        div 
+            a(href="/signupOwner") owner
+            a(href="/signupWalker") walker 
+        div
+    div
+        span 계정이 있으신가요?
+        a(href="/login") 로그인 &rarr;
