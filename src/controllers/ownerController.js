@@ -20,7 +20,7 @@ export const postDog = async (req, res) => {
         });
     } else {
         await Dog.findByIdAndDelete(dog_id);
-        return res.redirect("/owner/dog");
+        return res.redirect("/owner/dog/info");
     }
 };
 
@@ -45,7 +45,7 @@ export const postDogAdd = async (req, res) => {
         const user = await User.findById(user_id);
         user.ownerDogArray.push(newDog._id);
         user.save();
-        return res.redirect("/owner/dog");
+        return res.redirect("/owner/dog/info");
     } catch (error) {
         console.log(error);
         return res.status(400).render("dogAddorEdit", {
@@ -70,5 +70,5 @@ export const postDogEdit = async (req, res) => {
         },
         { new: true }
     );
-    return res.redirect("/owner/dog");
+    return res.redirect("/owner/dog/info");
 };
