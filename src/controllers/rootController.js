@@ -9,8 +9,8 @@ export const getHome = async (req, res) => {
     } else {
         const loggedInUser_id = req.session.user._id;
         const loggedInUser = await User.findById(loggedInUser_id);
-        if (loggedInUser.userType === "산책 선생님") {
-            if (loggedInUser.walkerDogSize && loggedInUser.walkerInro) {
+        if (loggedInUser.userType === "walker") {
+            if (loggedInUser.walkerIntro) {
                 return res.render("home", {
                     pageTitle: "DogWalk",
                 });
@@ -18,7 +18,7 @@ export const getHome = async (req, res) => {
                 return res.render("home", {
                     pageTitle: "DogWalk",
                     infoErrorMessage:
-                        "선생님 정보를 등록한 후에 서비스를 이용하실 수 있습니다.",
+                        "선생님 소개를 등록한 후에 서비스를 이용하실 수 있습니다.",
                 });
             }
         } else {
@@ -35,22 +35,19 @@ export const getHome = async (req, res) => {
     }
 };
 
-export const getSignup = (req, res) => {
-    return res.render("signup", { pageTitle: "회원가입" });
+export const getSignupType = (req, res) => {
+    return res.render("signupType", { pageTitle: "회원가입" });
 };
 
-export const postSignup = async (req, res) => {
-    let userType;
-    if (req.body.userType === "보호자 계정 생성") {
-        userType = "보호자";
-    } else {
-        userType = "산책 선생님";
-    }
+export const getSignupOwner = (req, res) => {
+    return res.render("signupOwner", { pageTitle: "회원가입" });
+};
 
+export const postSignupOwner = async (req, res) => {
     const { email, id, pw, confirmpw, location } = req.body;
-
+    const userType = "owner";
     if (pw !== confirmpw) {
-        return res.status(400).render("signup", {
+        return res.status(400).render("signupOwner", {
             pageTitle: "회원가입",
             errorMessage:
                 "입력하신 비밀번호와 확인 비밀번호가 같지 않습니다. 다시 시도해주세요.",
@@ -59,7 +56,7 @@ export const postSignup = async (req, res) => {
 
     const exists = await User.exists({ $or: [{ id }, { email }] });
     if (exists) {
-        return res.status(400).render("signup", {
+        return res.status(400).render("signupOwner", {
             pageTitle: "회원가입",
             errorMessage:
                 "같은 이메일 또는 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
@@ -73,15 +70,51 @@ export const postSignup = async (req, res) => {
             id,
             pw,
             location,
-            dogSize: undefined,
         });
-        return res.render("login", {
-            pageTitle: "로그인",
-            errorMessage:
-                "회원가입에 성공했습니다. 로그인 해서 서비스를 이용해보세요!",
-        });
+        return res.redirect("/login");
     } catch (error) {
-        return res.status(400).render("signup", {
+        return res.status(400).render("signupOwner", {
+            pageTitle: "회원가입",
+            errorMessage: "에러가 발생했습니다. 잠시 후 다시 시도해주세요",
+        });
+    }
+};
+
+export const getSignupWalker = (req, res) => {
+    return res.render("signupWalker", { pageTitle: "회원가입" });
+};
+
+export const postSignupWalker = async (req, res) => {
+    const { email, id, pw, confirmpw, location } = req.body;
+    const userType = "walker";
+    if (pw !== confirmpw) {
+        return res.status(400).render("signupWalke", {
+            pageTitle: "회원가입",
+            errorMessage:
+                "입력하신 비밀번호와 확인 비밀번호가 같지 않습니다. 다시 시도해주세요.",
+        });
+    }
+
+    const exists = await User.exists({ $or: [{ id }, { email }] });
+    if (exists) {
+        return res.status(400).render("signupWalke", {
+            pageTitle: "회원가입",
+            errorMessage:
+                "같은 이메일 또는 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
+        });
+    }
+
+    try {
+        await User.create({
+            userType,
+            email,
+            id,
+            pw,
+            location,
+        });
+        return res.redirect("/login");
+    } catch (error) {
+        return res.status(400).render("signupWalke", {
             pageTitle: "회원가입",
             errorMessage: "에러가 발생했습니다. 잠시 후 다시 시도해주세요",
         });
