@@ -5,7 +5,10 @@ block content
         h3=errorMessage
     form(method="POST")
         label(for="walkerIntro") 선생님 소개
-        input(placeholder="선생님 소개", id = "walkerIntro", name="walkerIntro", type="text", required)
-        label(for="walkerDogSize") 산책 가능 강아지 크기
-        input(placeholder="소형견/중형견/대형견", id = "walkerDogSize", name="walkerDogSize", type="text", required)
-        input(type="submit", value="등록")
+        input(placeholder=walkerIntro, id = "walkerIntro", name="walkerIntro", type="text", required)
+        label(for="location") 서비스 지역
+        input(placeholder=location, id = "location", name="location", type="text")
+        if add_or_edit == "add"
+            input(type="submit", value="등록")
+        else
+            input(type="submit", value="수정")
