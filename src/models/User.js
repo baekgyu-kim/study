@@ -7,9 +7,8 @@ const userSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     pw: { type: String, required: true },
     location: { type: String, required: true },
-    walkerDogSize: { type: String },
-    walkerIntro: { type: String },
     ownerDogArray: [{ type: mongoose.Schema.Types.ObjectId, ref: "Dog" }],
+    walkerIntro: { type: String },
 });
 
 userSchema.pre("save", async function () {
