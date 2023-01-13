@@ -6,11 +6,17 @@ block content
     else
         h1 로그인
     form(method="POST")
+        div
+            a(href="/user/github/login") Github로 로그인
+        hr
         label(for="id") 아이디
         input(placeholder="아이디", id = "id", name="id", type="text", required)
         label(for="pw") 비밀번호
         input(placeholder="비밀번호", id = "pw", name="pw", type="password", required)
         input(type="submit", value="Login")
+
+
+
     div
         span 아직 계정이 없으신가요?
-        a(href="/signup") 회원가입 &rarr;
+        a(href="/user/signupType") 회원가입 &rarr;
