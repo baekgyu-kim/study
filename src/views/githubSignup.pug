@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        title #{pageTitle}
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+    body            
+        main
+            h1 가입할 계정 종류를 선택해주세요
+                if errorMessage 
+                    h3=errorMessage
+            form(method="POST", action = "userType")
+                input(type = "hidden", name="name" value=name)
+                input(type = "hidden", name="avata_url" value=avata_url)
+                input(type = "hidden", name="email" value=email)
+                label(for="location") 서비스 사용 지역
+                input(placeholder="서비스 사용 지역", id = "location",name="location", type="text", required)
+                input(type="submit", name="userType", value="owner")
+                input(type="submit", name="userType", value="walker")
+        include partials/footer    
