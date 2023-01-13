@@ -7,9 +7,9 @@ header
                     img(src= "logo.png" width = "50", height = "50")
             if loggedIn
                 li
-                    a(href="/logout") 로그아웃
+                    a(href="/user/logout") 로그아웃
                 li
-                    a(href="/accountInfo") 회원정보 수정
+                    a(href="/user/accountInfo") 회원정보 수정
                 if loggedInUser.userType === "owner"
                     li
                         a(href="/owner/dog/info") 강아지 관리(#{loggedInUser.id}보호자님)
@@ -19,9 +19,7 @@ header
 
             else
                 li
-                    a(href="/login") 로그인
-                li
-                    a(href="/signupType") 회원가입
+                    a(href="/user/login") 로그인/회원가입
     hr(style="border-top: 2px solid")
 
             
