@@ -9,8 +9,11 @@ const app = express();
 const PORT = 4000;
 
 app.listen(PORT, () => {
-    console.log(`✅${PORT}번 포트에 서버 연결됨`);
+    console.log(`✅ ${PORT}번 포트에 서버 연결됨`);
 });
+
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
