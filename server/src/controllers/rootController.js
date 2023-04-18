@@ -2,7 +2,7 @@ const path = require("path");
 
 const rootController = {
     getHome: (req, res) => {
-        res.send("Home");
+        res.sendFile(path.join(__dirname, "../view/home.html"));
     },
 };
 
