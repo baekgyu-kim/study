@@ -11,15 +11,7 @@ export const getSignup = (req, res) => {
 };
 
 export const postSignup = async (req, res) => {
-    const { id, pw, confirmPw, name, stuId, userType } = req.body;
-    if (pw !== confirmPw) {
-        return res.status(400).render("signup", {
-            pageTitle: "회원가입",
-            errorMessage:
-                "입력하신 비밀번호와 확인 비밀번호가 같지 않습니다. 다시 시도해주세요.",
-        });
-    }
-
+    const { id, pw, name, stuId, userType } = req.body;
     const exists = await User.exists({ id });
     if (exists) {
         return res.status(400).render("signup", {
@@ -28,7 +20,13 @@ export const postSignup = async (req, res) => {
                 "같은 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
         });
     }
-
+    if (!(userType === "학생" || userType === "교수")) {
+        return res.status(400).render("signup", {
+            pageTitle: "회원가입",
+            errorMessage:
+                "유저 타입은 <학생> 또는 <교수> 중 하나여야만 합니다. 다시 시도해주세요",
+        });
+    }
     try {
         const user = await User.create({
             id,
@@ -39,11 +37,11 @@ export const postSignup = async (req, res) => {
             lectureArr: [],
         });
         loginUserToSession(req, user);
-        return res.render("home", { pagetitle: "홈", loggedInUser: user });
+        return res.redirect("/");
     } catch (error) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
-            errorMessage: "에러가 발생했습니다. 잠시 후 다시 시도해주세요",
+            errorMessage: error,
         });
     }
 };
@@ -69,7 +67,7 @@ export const postLogin = async (req, res) => {
         });
     }
     loginUserToSession(req, user);
-    return res.render("home", { pagetitle: "홈", loggedInUser: user });
+    return res.redirect("/");
 };
 
 export const getLogout = async (req, res) => {
