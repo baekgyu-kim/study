@@ -1,4 +1,18 @@
 extends base.pug
 
 block content
-    h1=loggedInUser
+    h1 회원가입
+    if errorMessage 
+        h3=errorMessage
+    form(method="POST")
+        label(for="id") 아이디
+        input(placeholder="아이디", id = "id", name="id", type="text", required)
+        label(for="pw") 비밀번호
+        input(placeholder="비밀번호", id = "pw",name="pw", type="text", required)
+        label(for="id") 이름
+        input(placeholder="이름", id = "name", name="name", type="text", required)
+        label(for="id") 유저 타입
+        input(placeholder="\"교수\" 또는 \"학생\"을 입력하세요", id = "userType", name="userType", type="text", required)
+        label(for="id") 학번
+        input(placeholder="학생 회원인 경우에만 입력하세요", id = "stuId", name="stuId", type="text")
+        input(type="submit", name="signup", value="회원가입")
