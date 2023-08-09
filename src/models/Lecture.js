@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const lectureSchema = new mongoose.Schema({
-    notice: { type: String, required: true },
-    prof: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    profId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    noticeUrlArr: [{ type: String }],
 });
 
 const Lecture = mongoose.model("Lecture", lectureSchema);

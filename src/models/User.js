@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     stuId: { type: String },
     userType: { type: String, required: true },
-    lectureArr: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecture" }],
+    lectureIdArr: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecture" }],
 });
 
 userSchema.pre("save", async function () {
