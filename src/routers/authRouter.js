@@ -6,12 +6,16 @@ import {
     postSignup,
     getLogout,
 } from "../controllers/authController";
-import { onlyLoggedIn, onlyLoggedOut } from "../middleware";
+import { onlyIsLoggedIn, onlyIsLoggedOut } from "../middleware";
 
 const authRouter = express.Router();
 
-authRouter.route("/login").all(onlyLoggedOut).get(getLogin).post(postLogin);
-authRouter.route("/signup").all(onlyLoggedOut).get(getSignup).post(postSignup);
-authRouter.route("/logout").all(onlyLoggedIn).get(getLogout);
+authRouter.route("/login").all(onlyIsLoggedOut).get(getLogin).post(postLogin);
+authRouter
+    .route("/signup")
+    .all(onlyIsLoggedOut)
+    .get(getSignup)
+    .post(postSignup);
+authRouter.route("/logout").all(onlyIsLoggedIn).get(getLogout);
 
 export default authRouter;
