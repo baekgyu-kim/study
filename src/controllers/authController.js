@@ -12,6 +12,10 @@ export const getSignup = (req, res) => {
 
 export const postSignup = async (req, res) => {
     const { id, pw, name, stuId, userType } = req.body;
+    if (userType === "professor" && stuId) {
+        stuId = "";
+    }
+
     const exists = await User.exists({ id });
     if (exists) {
         return res.status(400).render("signup", {
@@ -20,11 +24,12 @@ export const postSignup = async (req, res) => {
                 "같은 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
         });
     }
-    if (!(userType === "학생" || userType === "교수")) {
+    exists = await User.exists({ stuId });
+    if (exists) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
             errorMessage:
-                "유저 타입은 <학생> 또는 <교수> 중 하나여야만 합니다. 다시 시도해주세요",
+                "같은 학번을 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
         });
     }
     try {
