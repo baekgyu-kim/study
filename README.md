@@ -12,26 +12,6 @@
 > 2. 해당 지역의 신청 정보들을 모아서 산책 훈련사 계정에게 제공함.
 > 3. 산책 훈련사가 자신에게 맞는 신청을 선택하여 채팅 기능을 통해 매칭되는 구조.
 
-### 사용 스택
-
-> #### Backend
->
-> > -   서버 : Node.js, Express.
-> > -   DB : Mongo DB (mongoose로 연결해서 사용)
->
-> #### Frontend
->
-> > -   HTML Template : PUG
-> > -   Style : SCSS
-> > -   React 등의 Frontend 라이브러리를 사용하지 않아서 webpack을 따로 설치/설정해서 사용
->
-> ##### 기타 사용한 node package들
->
-> > -   bcypt : 사용자의 pw를 DB에 저장할 때 hashing할 때 사용하기 위함
-> > -   dotenv : DB URL, Session Secret등의 값을 환경변수에 넣어 사용하기 위함
-> > -   multer : 보호자로부터 반려견 사진을 받아 처리하기 위함
-> > -   babel : js 버전 차이로 인한 호환성 이슈 없애기 위함
-
 ### 현재 작업중인, 또는 추가 구현 예정인 기능
 
 > #### Backend
