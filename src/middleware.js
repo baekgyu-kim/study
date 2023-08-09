@@ -4,7 +4,7 @@ export const saveSessionToLocal = (req, res, next) => {
     next();
 };
 
-export const onlyLoggedIn = (req, res, next) => {
+export const onlyIsLoggedIn = (req, res, next) => {
     if (req.session.isLoggedIn) {
         return next();
     } else {
@@ -12,7 +12,7 @@ export const onlyLoggedIn = (req, res, next) => {
     }
 };
 
-export const onlyLoggedOut = (req, res, next) => {
+export const onlyIsLoggedOut = (req, res, next) => {
     if (!req.session.isLoggedIn) {
         return next();
     } else {
