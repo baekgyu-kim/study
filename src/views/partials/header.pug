@@ -7,7 +7,7 @@ header
                 li
                     a(href="/auth/logout") 로그아웃
                 li
-                    if loggedInUser.userType === "학생"
+                    if loggedInUser.userType === "student"
                         span 로그인 된 계정: #{loggedInUser.name} 학생
                     else
                         span 로그인 된 계정: #{loggedInUser.name} 교수님
