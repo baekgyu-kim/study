@@ -13,7 +13,7 @@ export const getSugang = async (req, res) => {
         .sort({ createdAt: "desc" })
         .populate("profId");
 
-    res.render("stu/lecture", {
+    res.render("stu/sugang", {
         pageTitle: "수강신청",
         lectures,
         sugangLectureIds,
