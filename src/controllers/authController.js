@@ -16,6 +16,14 @@ export const postSignup = async (req, res) => {
         stuId = "";
     }
 
+    if (userType === "student" && !stuId) {
+        return res.render("signup", {
+            pageTitle: "회원가입",
+            errorMessage:
+                "학생 회원은 학번을 반드시 입력해야 합니다. 다시 시도해주세요.",
+        });
+    }
+
     const existsId = await User.exists({ id });
     if (existsId) {
         return res.status(400).render("signup", {
