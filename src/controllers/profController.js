@@ -1,6 +1,11 @@
 import User from "../models/User";
 import Lecture from "../models/Lecture";
 
+const updateLoggedInUser = async (req, user) => {
+    req.session.loggedInUser = user;
+    return;
+};
+
 export const getAllLectures = async (req, res) => {
     const loggedInUser = req.session.loggedInUser;
     const lectures = await Lecture.find({ profId: loggedInUser._id });
