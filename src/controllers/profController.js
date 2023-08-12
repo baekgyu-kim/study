@@ -2,7 +2,9 @@ import User from "../models/User";
 import Lecture from "../models/Lecture";
 
 export const getAllLectures = async (req, res) => {
-    const loggedInUSer = req.session.loggedInUser;
+    const loggedInUser = req.session.loggedInUser;
+    const lectures = await Lecture.find({ profId: loggedInUser._id });
+    return res.render("prof/lecture.pug", { pageTitle: "강의 목록", lectures });
 };
 
 export const getNewLecture = async (req, res) => {};
