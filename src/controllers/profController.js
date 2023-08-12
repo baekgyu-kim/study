@@ -18,11 +18,24 @@ export const getNewLecture = async (req, res) => {
 
 export const postNewLecture = async (req, res) => {
     const { lectureName } = req.body;
-    const loggedInUSer = req.session.loggedInUser;
-    await Lecture.create({
-        profId: loggedInUSer._id,
+    const { loggedInUser } = req.session;
+    const { lectureIds } = loggedInUser;
+
+    const newLecture = await Lecture.create({
+        profId: loggedInUser._id,
+        stuIds: [],
         lectureName,
     });
+    if (!lectureIds.includes(newLecture._id)) {
+        await lectureIds.push(newLecture._id);
+    }
+
+    await User.findByIdAndUpdate(loggedInUser._id, {
+        lectureIds,
+    });
+    const newUser = await User.findById(loggedInUser._id);
+    await updateLoggedInUser(req, newUser);
+
     return res.redirect("/prof/lecture");
 };
 
