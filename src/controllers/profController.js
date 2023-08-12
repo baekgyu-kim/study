@@ -30,7 +30,9 @@ export const getOneLecture = async (req, res) => {
     });
 };
 
-export const getOneLecture = async (req, res) => {};
+export const getNewNotice = async (req, res) => {
+    return res.render("prof/newNotice.pug", { pageTitle: "게시물 작성" });
+};
 
 export const postOneNotice = async (req, res) => {};
 
