@@ -4,7 +4,7 @@ const lectureSchema = new mongoose.Schema(
     {
         profId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         lectureName: { type: String, required: true },
-        notices: [{ type: String }],
+        noticeIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Notice" }],
     },
     { timestamps: true }
 );
