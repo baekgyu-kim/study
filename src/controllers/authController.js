@@ -47,7 +47,7 @@ export const postSignup = async (req, res) => {
             name,
             stuId,
             userType,
-            lectureArr: [],
+            lectureIds: [],
         });
         loginUserToSession(req, user);
         return res.redirect("/");
