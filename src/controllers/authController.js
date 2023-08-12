@@ -16,16 +16,16 @@ export const postSignup = async (req, res) => {
         stuId = "";
     }
 
-    const exists = await User.exists({ id });
-    if (exists) {
+    const existsId = await User.exists({ id });
+    if (existsId) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
             errorMessage:
                 "같은 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
         });
     }
-    exists = await User.exists({ stuId });
-    if (exists) {
+    const existsStuId = await User.exists({ stuId });
+    if (existsStuId) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
             errorMessage:
