@@ -4,6 +4,7 @@ import {
     getNewLecture,
     postNewLecture,
     getOneLecture,
+    getNewNotice,
     postOneNotice,
     getAllStudents,
     cancelOneStudent,
@@ -18,6 +19,11 @@ profRouter
     .all(onlyIsLoggedIn)
     .get(getNewLecture)
     .post(postNewLecture);
+profRouter
+    .route("/lecture/newNotice/:id")
+    .all(onlyIsLoggedIn)
+    .get(getNewNotice)
+    .post(postOneNotice);
 profRouter
     .route("/lecture/:id")
     .all(onlyIsLoggedIn)
