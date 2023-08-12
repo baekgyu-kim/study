@@ -11,7 +11,24 @@ export const getNewLecture = async (req, res) => {
     return res.render("prof/newLecture.pug", { pageTitle: "강의 개설" });
 };
 
-export const postNewLecture = async (req, res) => {};
+export const postNewLecture = async (req, res) => {
+    const { lectureName } = req.body;
+    const loggedInUSer = req.session.loggedInUser;
+    await Lecture.create({
+        profId: loggedInUSer._id,
+        lectureName,
+    });
+    return res.redirect("/prof/lecture");
+};
+
+export const getOneLecture = async (req, res) => {
+    const { id } = req.params;
+    const lecture = await Lecture.findById(id);
+    return res.render("prof/lectureDetail.pug", {
+        pageTitle: `${lecture.lectureName}`,
+        lecture,
+    });
+};
 
 export const getOneLecture = async (req, res) => {};
 
