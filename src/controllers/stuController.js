@@ -1,12 +1,13 @@
 import Lecture from "../models/Lecture";
 import User from "../models/User";
 
-export const getSugang = (req, res) => {};
+export const getSugang = async (req, res) => {
+};
 
-export const postSugang = (req, res) => {};
+export const postSugang = async (req, res) => {};
 
-export const getAllLectures = (req, res) => {};
+export const getAllLectures = async (req, res) => {};
 
-export const getOneLecture = (req, res) => {};
+export const getOneLecture = async (req, res) => {};
 
-export const getUpdate = (req, res) => {};
+export const getUpdate = async (req, res) => {};
