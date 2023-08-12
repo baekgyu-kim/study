@@ -8,9 +8,7 @@ const userSchema = new mongoose.Schema(
         name: { type: String, required: true },
         stuId: { type: String },
         userType: { type: String, required: true },
-        lectureIdArr: [
-            { type: mongoose.Schema.Types.ObjectId, ref: "Lecture" },
-        ],
+        lectureIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecture" }],
     },
     { timestamps: true }
 );
