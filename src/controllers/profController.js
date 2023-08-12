@@ -7,7 +7,9 @@ export const getAllLectures = async (req, res) => {
     return res.render("prof/lecture.pug", { pageTitle: "강의 목록", lectures });
 };
 
-export const getNewLecture = async (req, res) => {};
+export const getNewLecture = async (req, res) => {
+    return res.render("prof/newLecture.pug", { pageTitle: "강의 개설" });
+};
 
 export const postNewLecture = async (req, res) => {};
 
