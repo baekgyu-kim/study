@@ -3,7 +3,7 @@ extends base.pug
 block content
     h1 회원가입
     if errorMessage 
-        h3=errorMessage
+        h3(style="color:red")=errorMessage
     form(method="POST")
         label(for="id") 아이디
         input(placeholder="아이디", id = "id", name="id", type="text", required)

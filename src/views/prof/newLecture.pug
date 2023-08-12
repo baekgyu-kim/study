@@ -2,7 +2,7 @@ extends ../base.pug
 
 block content
     if errorMessage
-        h3= errorMessage
+        h3(style="color:red")=errorMessage
     else
         h1 강의 개설
     form(method="POST")
