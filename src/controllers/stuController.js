@@ -1,6 +1,11 @@
 import Lecture from "../models/Lecture";
 import User from "../models/User";
 
+const updateLoggedInUser = async (req, user) => {
+    req.session.loggedInUser = user;
+    return;
+};
+
 export const getSugang = async (req, res) => {
 };
 
