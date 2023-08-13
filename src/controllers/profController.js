@@ -54,6 +54,16 @@ export const getNewNotice = async (req, res) => {
 
 export const postOneNotice = async (req, res) => {};
 
-export const getAllStudents = async (req, res) => {};
+export const getAllStudents = async (req, res) => {
+    const loggedInUser = req.session.loggedInUser;
+    const { lectureIds } = loggedInUser;
+    const lectures = await Lecture.find({ _id: { $in: lectureIds } }).populate(
+        "stuIds"
+    );
+    return res.render("prof/students.pug", {
+        pageTitle: "수강 학생 관리",
+        lectures,
+    });
+};
 
 export const cancelOneStudent = async (req, res) => {};
