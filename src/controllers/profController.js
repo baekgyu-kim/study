@@ -119,5 +119,34 @@ export const getAllStudents = async (req, res) => {
 
 export const cancelOneStudent = async (req, res) => {
     try {
-    } catch (errorMessage) {}
+        const { stuId, lectureId } = req.body;
+        const student = await User.findById(stuId);
+        const studentLectureIds = student.lectureIds;
+        const lecture = await Lecture.findById(lectureId);
+        const lectureStuIds = lecture.stuIds;
+
+        // Lecture.stuIds 에서 학생 삭제
+        if (lectureStuIds.includes(stuId)) {
+            lectureStuIds.splice(lectureStuIds.indexOf(stuId), 1);
+        }
+        await Lecture.findByIdAndUpdate(lectureId, {
+            stuIds: lectureStuIds,
+        });
+
+        // User.lectureIds 에서 강의 삭제
+        if (studentLectureIds.includes(lectureId)) {
+            studentLectureIds.splice(studentLectureIds.indexOf(lectureId), 1);
+        }
+        await User.findByIdAndUpdate(stuId, {
+            lectureIds: studentLectureIds,
+        });
+
+        return res.redirect("/prof/student");
+    } catch (errorMessage) {
+        return res.status(400).render("prof/students.pug", {
+            pageTitle: "에러",
+            lectures: [],
+            errorMessage,
+        });
+    }
 };

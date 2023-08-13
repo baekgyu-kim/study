@@ -33,6 +33,6 @@ profRouter
     .route("/student")
     .all(onlyIsLoggedIn)
     .get(getAllStudents)
-    .patch(cancelOneStudent);
+    .post(cancelOneStudent);
 
 export default profRouter;

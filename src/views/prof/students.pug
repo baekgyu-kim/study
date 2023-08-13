@@ -18,8 +18,11 @@ block content
                         h3 #{lecture.lectureName} 강의를 수강중인 학생 목록
                         for student in lecture.stuIds
                             tr
-                                td
-                                    h4 수강 취소
+                                td(style="padding: 0px")
+                                    form(method="POST" style="display:inline")
+                                        input(type="hidden" name="stuId" value=student._id)
+                                        input(type="hidden" name="lectureId" value=lecture._id)
+                                        input(type="submit" value="수강 취소")
                                 td
                                     h4=student.name
                                 td
