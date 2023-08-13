@@ -32,7 +32,8 @@ export const postSignup = async (req, res) => {
                 "같은 아이디를 가진 계정이 이미 존재합니다. 다시 시도해주세요.",
         });
     }
-    const existsStuId = await User.exists({ stuId });
+    const existsStuId =
+        (await User.exists({ stuId })) && userType === "student";
     if (existsStuId) {
         return res.status(400).render("signup", {
             pageTitle: "회원가입",
