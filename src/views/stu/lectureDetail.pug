@@ -1,0 +1,13 @@
+extends ../base.pug
+
+block content
+    h2 #{lecture.lectureName} 강의 페이지
+    hr
+    h2 게시물
+    if lecture.noticeIds.length === 0
+        h3 아직 등록된 게시물이 없습니다. 교수님께 문의하세요.
+    else
+        ul
+            each noticeUrl in lecture.noticeUrls
+                li
+                    a(href=noticeUrl) 게시물 파일 링크
