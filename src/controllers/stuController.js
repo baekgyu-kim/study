@@ -52,6 +52,13 @@ export const getAllLectures = async (req, res) => {
     return res.render("stu/lecture", { pageTitle: "수강중인 강의", lectures });
 };
 
-export const getOneLecture = async (req, res) => {};
+export const getOneLecture = async (req, res) => {
+    const lectureId = req.params.id;
+    const lecture = await Lecture.findById(lectureId);
+    return res.render("stu/lectureDetail", {
+        pageTitle: `${lecture.lectureName}`,
+        lecture,
+    });
+};
 
 export const getUpdate = async (req, res) => {};
