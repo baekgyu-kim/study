@@ -45,7 +45,12 @@ export const postSugang = async (req, res) => {
     return res.redirect("/stu/sugang");
 };
 
-export const getAllLectures = async (req, res) => {};
+export const getAllLectures = async (req, res) => {
+    const loggedInUser = req.session.loggedInUser;
+    const lectureIds = loggedInUser.lectureIds;
+    const lectures = await Lecture.find({ _id: { $in: lectureIds } });
+    return res.render("stu/lecture", { pageTitle: "수강중인 강의", lectures });
+};
 
 export const getOneLecture = async (req, res) => {};
 
