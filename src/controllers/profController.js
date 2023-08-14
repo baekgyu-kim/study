@@ -1,5 +1,6 @@
 import User from "../models/User";
 import Lecture from "../models/Lecture";
+import Notice from "../models/Notice";
 
 const updateLoggedInUser = async (req, user) => {
     req.session.loggedInUser = user;
@@ -84,7 +85,11 @@ export const getOneLecture = async (req, res) => {
 
 export const getNewNotice = async (req, res) => {
     try {
-        return res.render("prof/newNotice.pug", { pageTitle: "게시물 작성" });
+        const lectureId = req.params.id;
+        return res.render("prof/newNotice.pug", {
+            pageTitle: "게시물 작성",
+            lectureId,
+        });
     } catch (errorMessage) {
         return res.status(400).render("prof/newNotice.pug", {
             pageTitle: "에러",
@@ -96,7 +101,36 @@ export const getNewNotice = async (req, res) => {
 
 export const postOneNotice = async (req, res) => {
     try {
-    } catch (errorMessage) {}
+        const lectureId = req.params.id;
+        const { content } = req.body;
+        const lecture = await Lecture.findById(lectureId);
+        const { noticeIds } = lecture;
+        const newNotice = await Notice.create({
+            lectureId,
+            content,
+        });
+        const newNoticeId = newNotice._id;
+        if (!noticeIds.includes(newNoticeId)) {
+            await noticeIds.push(newNoticeId);
+        }
+        await Lecture.findByIdAndUpdate(lectureId, {
+            noticeIds,
+        });
+        const newLecture = await Lecture.findById(lectureId).populate(
+            "noticeIds"
+        );
+        res.locals.lecture = newLecture;
+        return res.render("lectureDetail.pug", {
+            pageTitle: `${lecture.lectureName}`,
+            lecture: newLecture,
+        });
+    } catch (errorMessage) {
+        return res.status(400).render("lectureDetail.pug", {
+            pageTitle: "에러",
+            lecture: null,
+            errorMessage,
+        });
+    }
 };
 
 export const getAllStudents = async (req, res) => {
