@@ -98,5 +98,36 @@ export const getOneLecture = async (req, res) => {
 
 export const getUpdate = async (req, res) => {
     try {
-    } catch (errorMessage) {}
+        const loggedInUser = req.session.loggedInUser;
+        const lectureIds = loggedInUser.lectureIds;
+        const lectures = await Lecture.find({
+            _id: { $in: lectureIds },
+        })
+            .populate("profId")
+            .populate("noticeIds");
+        const notices = [];
+        for (let i = 0; i < lectures.length; i++) {
+            for (let j = 0; j < lectures[i].noticeIds.length; j++) {
+                let noticeObj = {};
+                noticeObj.content = lectures[i].noticeIds[j].content;
+                noticeObj.createdAt = lectures[i].noticeIds[j].createdAt;
+                noticeObj.lectureName = lectures[i].lectureName;
+                noticeObj.profName = lectures[i].profId.name;
+                notices.push(noticeObj);
+            }
+        }
+        const sortedNotices = notices.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        return res.render("stu/update", {
+            pageTitle: "최근 업데이트",
+            sortedNotices,
+        });
+    } catch (errorMessage) {
+        return res.status(400).render("stu/update", {
+            pageTitle: "에러",
+            sortedNotices: null,
+            errorMessage,
+        });
+    }
 };

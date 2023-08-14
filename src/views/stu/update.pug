@@ -1,0 +1,32 @@
+extends ../base.pug
+block headContent
+    script.
+        document.addEventListener("DOMContentLoaded", function() {
+            const noticeContentsNodeList = document.querySelectorAll('.forConvertToHtml')
+            const noticeContents = Array.from(noticeContentsNodeList);
+            const innerTexts = [];
+            for(let i = 0; i < noticeContents.length; i++) {
+                innerTexts.push(noticeContents[i].innerText);
+            }
+            const paragraphs = document.querySelectorAll('.noticeContent');
+            for(let i = 0; i < paragraphs.length; i++) {
+                paragraphs[i].innerHTML = innerTexts[i];
+            }
+        });
+
+block content
+    if sortedNotices
+        if sortedNotices.length === 0
+            h3(style="color:red") 아직 등록된 게시물이 없습니다. 교수님께 문의하세요.
+        else
+            h2 게시물 업데이트 목록
+            ul
+                each notice in sortedNotices
+                    li
+                        span(class="forConvertToHtml", style="display:none")= notice.content
+                        h4 과목명: #{notice.lectureName} (#{notice.profName} 교수님)
+                        h6 등록 시간: #{notice.createdAt}
+                        p(class="noticeContent")
+                        hr
+    else
+        h3(style="color:red") 공지사항이 없습니다.
