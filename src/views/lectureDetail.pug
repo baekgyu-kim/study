@@ -23,7 +23,10 @@ block content
         hr
         h2 게시물
         if lecture.noticeIds.length === 0
-            h3(style="color:red") 아직 게시물이 없습니다. 학생들을 위해 첫 게시물을 등록해주세요.
+            if loggedInUser.userType === 'professor'
+                h3(style="color:red") 아직 게시물이 없습니다. 학생들을 위해 첫 게시물을 등록해주세요.
+            else
+                h3(style="color:red") 아직 게시물이 없습니다. 교수님께 문의하세요.
         else
             ul
                 each noticeId in lecture.noticeIds
