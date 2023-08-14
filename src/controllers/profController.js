@@ -69,11 +69,12 @@ export const getOneLecture = async (req, res) => {
         const { id } = req.params;
         const lecture = await Lecture.findById(id);
         return res.render("prof/lectureDetail.pug", {
+        return res.render("lectureDetail.pug", {
             pageTitle: `${lecture.lectureName}`,
             lecture,
         });
     } catch (errorMessage) {
-        return res.status(400).render("prof/lectureDetail.pug", {
+        return res.status(400).render("lectureDetail.pug", {
             pageTitle: "에러",
             lecture: null,
             errorMessage,
