@@ -17,7 +17,7 @@ export const getAllLectures = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("prof/lecture.pug", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }
@@ -75,7 +75,7 @@ export const getOneLecture = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("prof/lectureDetail.pug", {
             pageTitle: "에러",
-            lecture: {},
+            lecture: null,
             errorMessage,
         });
     }
@@ -88,6 +88,7 @@ export const getNewNotice = async (req, res) => {
         return res.status(400).render("prof/newNotice.pug", {
             pageTitle: "에러",
             errorMessage,
+            lectureId: null,
         });
     }
 };
@@ -111,7 +112,7 @@ export const getAllStudents = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("prof/students.pug", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }
@@ -145,7 +146,7 @@ export const cancelOneStudent = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("prof/students.pug", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }

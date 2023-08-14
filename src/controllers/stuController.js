@@ -22,7 +22,7 @@ export const getSugang = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("stu/sugang", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }
@@ -55,7 +55,7 @@ export const postSugang = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("stu/sugang", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }
@@ -73,7 +73,7 @@ export const getAllLectures = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("stu/lecture", {
             pageTitle: "에러",
-            lectures: [],
+            lectures: null,
             errorMessage,
         });
     }
@@ -90,7 +90,7 @@ export const getOneLecture = async (req, res) => {
     } catch (errorMessage) {
         return res.status(400).render("stu/lectureDetail", {
             pageTitle: "에러",
-            lecture: [],
+            lecture: null,
             errorMessage,
         });
     }
