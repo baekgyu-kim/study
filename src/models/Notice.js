@@ -12,5 +12,5 @@ const noticeSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const Notice = mongoose.model("Lecture", noticeSchema);
+const Notice = mongoose.model("Notice", noticeSchema);
 export default Notice;
