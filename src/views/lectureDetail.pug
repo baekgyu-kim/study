@@ -32,8 +32,15 @@ block content
                 each noticeId in lecture.noticeIds
                     li
                         span(class="forConvertToHtml", style="display:none")= noticeId.content
+                        h5 등록 시간: #{noticeId.createdAt}
                         p(class="noticeContent") 
+                        hr
         
         if loggedInUser.userType === 'professor'
             hr
-            a(href=`/prof/lecture/newNotice/${lecture._id}`) 게시물 등록
+            a(href=`/prof/lecture/newNotice/${lecture._id}`) 새 게시물 등록하러 가기
+            br
+            br
+            a(href="/prof/lecture") 개설한 강의 목록 보러가기
+        else
+            a(href="/stu/lecture") 수강중인 강의 목록 보러가기
