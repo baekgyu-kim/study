@@ -4,7 +4,7 @@
     "description": "KWEB 면제과제 개발을 위한 repository입니다.",
     "main": "index.js",
     "scripts": {
-        "dev_server": "nodemon --exec babel-node src/index.js"
+        "start_server": "nodemon --exec babel-node src/index.js"
     },
     "repository": {
         "type": "git",
