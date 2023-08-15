@@ -24,11 +24,7 @@ profRouter
     .all(onlyIsLoggedIn)
     .get(getNewNotice)
     .post(postOneNotice);
-profRouter
-    .route("/lecture/:id")
-    .all(onlyIsLoggedIn)
-    .get(getOneLecture)
-    .post(postOneNotice);
+profRouter.route("/lecture/:id").all(onlyIsLoggedIn).get(getOneLecture);
 profRouter
     .route("/student")
     .all(onlyIsLoggedIn)
