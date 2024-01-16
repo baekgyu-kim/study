@@ -1,4 +1,6 @@
 function Tv() {
-    return null;
+    return (
+        <div></div>
+    );
 }
 export default Tv;

@@ -1,4 +1,6 @@
 function Search() {
-    return null;
+    return (
+        <div></div>
+    );
 }
 export default Search;
