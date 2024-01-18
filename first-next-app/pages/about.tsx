@@ -1,12 +1,12 @@
-import HeadTitle from "../components/HeadTitle"
+import HeadTitle from "../components/HeadTitle";
 
-const Home = () => { 
+const About = () => { 
     return (
-        <div className="home">
-            <HeadTitle title="Home" />
-            <h1>Home</h1>
+        <div className="about">
+            <HeadTitle title="About" />
+            <h1>About</h1>
             <style jsx>{`
-                .home {
+                .about {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -14,6 +14,6 @@ const Home = () => {
                 }
             `}</style>
         </div>
-    );
+    )
 }
-export default Home;
+export default About;
