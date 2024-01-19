@@ -1,9 +1,13 @@
 const NavBar = () => { 
     return (
-        <div className="nav-bar">
-            <div className="nav-bar__logo">
+        <div className="nav-bar__container">
+            <div className="nav-bar__logo__container">
                 <a href="/">
-                    <img className="nav-bar__logo__img" src="./logo.png" alt="logo" />
+                    <img
+                        className="nav-bar__logo__img"
+                        src="./logo.png"
+                        alt="logo"
+                    />
                 </a>
             </div>
             <div className="nav-bar__menu">
@@ -12,7 +16,7 @@ const NavBar = () => {
                 </div>
             </div>
             <style jsx>{`
-                .nav-bar {
+                .nav-bar__container {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -21,15 +25,20 @@ const NavBar = () => {
                     background-color: #ffffff;
                     border-bottom: 1px solid #eaeaea;
                 }
-                .nav-bar__logo {
-                    width : 70px;
-                    height : 70px;
+                .nav-bar__logo__container {
+                    width: 70px;
+                    height: 70px;
                 }
                 .nav-bar__logo__img {
                     width: 70px;
                     height: 70px;
-                    display: block;
                     border-radius: 50%;
+                }
+                .nav-bar__logo__text {
+                    margin: 0;
+                    font-size: 20px;
+                    font-weight: 700;
+                    color: #000000;
                 }
                 .nav-bar__menu {
                     display: flex;
@@ -42,10 +51,9 @@ const NavBar = () => {
                     text-decoration: none;
                     color: #000000;
                 }
-
             `}</style>
         </div>
-    )
+    );
 }
 
 export default NavBar;

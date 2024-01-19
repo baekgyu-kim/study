@@ -4,11 +4,9 @@ import Layout from '../components/Layout';
 
 const AppBase = ({ Component, pageProps } : AppProps) => {
     return (
-        <>
         <Layout>
             <Component {...pageProps} />
         </Layout>
-        </>
 
     );
 }
