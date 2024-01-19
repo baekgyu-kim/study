@@ -1,6 +1,6 @@
 # dogWalk
-
-🐶Dog owner &amp; Dog walker matching service🐶
+> ### 개요
+> 🐶Dog owner &amp; Dog walker matching service🐶
 
 > ### 프로젝트 진행 현황
 > #### 현재
