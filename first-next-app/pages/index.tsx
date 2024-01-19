@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import HeadTitle from "../components/HeadTitle"
 
-const API_KEY = "158a636d732a3c5919315f667eab5c57";
-const BASE_URL = "https://api.themoviedb.org/3/movie/popular"
-const LANGUAGE = "en-US";
-const PAGE = 1;
-
-
 interface IMovie { 
     adult: boolean;
     backdrop_path: string;
@@ -30,7 +24,7 @@ const Home = () => {
     useEffect(() => {
         (
             async () => { 
-                const response = await fetch(`${BASE_URL}?api_key=${API_KEY}&language=${LANGUAGE}&page=${PAGE}`);
+                const response = await fetch("api/movies");
                 const movieJson = await response.json();
                 const movieResult = await movieJson.results;
                 setMovies(movieResult);
