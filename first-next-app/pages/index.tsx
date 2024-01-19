@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import HeadTitle from "../components/HeadTitle"
+import Link from "next/link";
 
 interface IMovie { 
     adult: boolean;
@@ -34,26 +35,27 @@ const Home = () => {
     return (
         <div className="home">
             <HeadTitle title="Home" />
-                {movies === undefined ? (
-                    <h1>Loading...</h1>
-                ) : (
-                    <div className="home__movie-list__container">
-                        {movies.map((movie) => (
-                            <div
-                                className="home__movie-list__element"
-                                key={movie.id}
-                            >
-                                <h3>{movie.original_title}</h3>
-                                <img
-                                    className="home__movie-list__element__img"
-                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                    alt={movie.original_title}
-                                />
-                                <p>{movie.overview}</p>
-                            </div>
-                        ))}
-                    </div>
-                )}
+            {movies === undefined ? (
+                <h1>Loading...</h1>
+            ) : (
+                <div className="home__movie-list__container">
+                    {movies.map((movie) => (
+                        <Link key={movie.id} href={`/movies/${movie.id}`}>
+                            
+                                <div className="home__movie-list__element">
+                                    <h3>{movie.original_title}</h3>
+                                    <img
+                                        className="home__movie-list__element__img"
+                                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                        alt={movie.original_title}
+                                    />
+                                    <p>{movie.overview}</p>
+                                </div>
+                            
+                        </Link>
+                    ))}
+                </div>
+            )}
 
             <style jsx>{`
                 .home {
