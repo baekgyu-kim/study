@@ -1,0 +1,39 @@
+.settings__setting {
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 10%);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.settings__setting i {
+  margin-right: 20px;
+  font-size: 22px;
+  opacity: 80%;
+}
+.settings__setting-column:last-child {
+  opacity: 50%;
+  font-size: 15px;
+}
+@keyframes hideSplashScreen {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+    visibility: hidden;
+  }
+}
+
+#splash-screen {
+  background-color: var(--yellow);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+  animation: hideSplashScreen 1s ease-in-out forwards;
+}

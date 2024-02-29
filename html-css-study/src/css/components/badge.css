@@ -1,0 +1,38 @@
+.badge {
+  display: block;
+  background-color: tomato;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 600;
+}
+
+@keyframes notificationAnimation {
+  0% {
+    tranform: none;
+  }
+  50% {
+    transform: rotateY(360deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.badge-nav {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  animation: notificationAnimation 2s ease-in-out infinite;
+}
+
+.badge-user {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 25px;
+}

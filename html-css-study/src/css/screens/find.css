@@ -1,0 +1,126 @@
+.recommended-friends {
+  padding: 25px 0px;
+  margin: 25px 0px;
+  border-top: var(--main-border);
+  border-bottom: var(--main-border);
+}
+.recommended-friends__title {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 50%);
+}
+.recommended-friends span {
+  display: block;
+  margin: 110px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 50%);
+  font-size: 18px;
+}
+.open-chat__header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  border-top: var(--main-border);
+  padding-top: 25px;
+  margin-bottom: 25px;
+  color: rgba(0, 0, 0, 50%);
+}
+.open-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.open-post__title {
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.open-post__hashtags {
+  text-transform: uppercase;
+  opacity: 60%;
+}
+.open-post__members {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+}
+.open-post__members img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.open-post__member-count {
+  opacity: 50%;
+  font-size: 14px;
+}
+.open-post__members .divider {
+  width: 1px;
+  height: 15px;
+  background-color: rgba(0, 0, 0, 50%);
+  margin: 0 5px;
+}
+.open-post__member-status {
+  color: #ffb0e0;
+  font-weight: 450;
+}
+.open-post__photo img {
+  width: 135px;
+  height: 135px;
+  border-radius: 10px;
+}
+.open-post__heart-count {
+  background-color: rgba(0, 0, 0, 65%);
+  color: white;
+  padding: 5px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 7px;
+  font-size: 12px;
+}
+.open-post__heart-count span {
+  margin-left: 5px;
+}
+.open-post__photo {
+  position: relative;
+}
+@keyframes hideSplashScreen {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+    visibility: hidden;
+  }
+}
+
+#splash-screen {
+  background-color: var(--yellow);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+  animation: hideSplashScreen 1s ease-in-out forwards;
+}
+
+@keyframes heartbeat {
+  0% {
+    color: white;
+  }
+  50% {
+    color: tomato;
+    transform: scale(3);
+  }
+  100% {
+    color: white;
+  }
+}
+.open-post__heart-count i {
+  will-change: transform;
+  animation: heartbeat 1s ease-in-out infinite;
+}

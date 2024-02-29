@@ -1,0 +1,77 @@
+.welcome-header {
+  margin: 90px 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-header_title {
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+.welcome-header_text {
+  width: 60%;
+  opacity: 70%;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 30px;
+}
+.login-form__username,
+.login-form__password {
+  border: none;
+  padding: 15px 0px;
+  font-size: 18px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 20%);
+  transition: border-color 0.1s ease-in-out;
+}
+.login-form__username::placeholder,
+.login-form__password::placeholder {
+  color: rgba(0, 0, 0, 40%);
+}
+.login-form__username:focus,
+.login-form__password:focus {
+  border-color: var(--yellow);
+  border-width: 1.5px;
+}
+.login-form__btn {
+  border: none;
+  padding: 15px 0px;
+  font-size: 18px;
+  margin-bottom: 25px;
+  background-color: var(--yellow);
+  cursor: pointer;
+  padding: 20px 0px;
+  border-radius: 5px;
+}
+.login-form__anchor {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 13px;
+}
+@keyframes hideSplashScreen {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+    visibility: hidden;
+  }
+}
+
+#splash-screen {
+  background-color: var(--yellow);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+  animation: hideSplashScreen 1s ease-in-out forwards;
+}
