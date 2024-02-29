@@ -1,0 +1,103 @@
+@import "reset.css";
+
+body {
+	background-color: beige;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.up__container {
+	margin-top: 20px;
+	width: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: -15px;
+}
+
+.current__color__circle {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	margin-left: 15px;
+	margin-right: 5px;
+}
+
+.canvas {
+	cursor: pointer;
+	margin-top: 30px;
+	width: 500px;
+	height: 500px;
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.controls {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.controls .controls__btns {
+	margin-bottom: 20px;
+	width: 500px;
+	display: flex;
+	justify-content: space-around;
+}
+
+button {
+	width: 120px;
+	height: 40px;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	font-weight: bold;
+	padding: 5px;
+	border-radius: 15%;
+}
+
+.controls__btns button:active {
+	transform: scale(0.9);
+}
+
+#DrawMode {
+	background-color: skyblue;
+}
+
+.controls .controls__colors {
+	display: flex;
+	width: 500px;
+	justify-content: space-between;
+}
+
+.controls .controls__colors .controls__color {
+	width: 40px;
+	height: 40px;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	border-radius: 100%;
+	cursor: pointer;
+}
+
+.controls .controls__colors .controls__color:hover {
+	transform: scale(0.8);
+}
+
+.controls .controls__range {
+	margin-bottom: 10px;
+}
+
+input {
+	width: 250px;
+}
+
+.save {
+	background-color: lightgrey;
+	border: solid;
+	border-width: 2px;
+	margin-left: 50px;
+}
+.mode {
+	border: none;
+}
