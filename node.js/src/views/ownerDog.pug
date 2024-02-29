@@ -1,0 +1,25 @@
+extends base.pug
+include mixins/dog
+
+block content
+    div
+        if dogs.length === 0
+            h3 등록된 강아지가 없습니다. 강아지를 등록하고 서비스를 이용해보세요!         
+        else
+            h3 등록된 강아지들 관리
+            h4 #{loggedInUser.id} 보호자님 계정에 등록된 강아지들입니다.
+            each dog in dogs
+                +dog(dog)
+                form(method = "POST")
+                    input(type="hidden", name="dog_id", value=dog._id)
+                    input(type="submit" name="edit_or_delete", value="수정")
+                    input(type="submit" name="edit_or_delete", value="삭제")
+    hr(style="border-top: 2px solid")
+    div
+        if dogs.length === 0
+            h3 첫 번째 강아지를 등록해보세요!
+            a(href="add") 강아지 등록하러 가기&rarr;
+        else
+            h3 강아지 추가 등록
+            a(href="add") 강아지 등록하러 가기&rarr;
+

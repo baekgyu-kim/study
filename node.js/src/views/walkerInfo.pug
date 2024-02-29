@@ -1,0 +1,20 @@
+extends base.pug
+
+block content
+    if errorMessage
+        h3=errorMessage
+        div
+            
+    else
+        h3 현재 등록된 선생님 정보입니다.
+        hr
+        h4 선생님 소개
+        p=walkerIntro
+        h4 서비스 지역
+        p=location
+    hr
+
+    if errorMessage
+        a(href="edit") 선생님 소개 등록하러 가기 &rarr;
+    else
+        a(href="edit") 선생님 소개 수정하러 가기 &rarr;

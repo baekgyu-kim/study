@@ -1,0 +1,25 @@
+header
+    nav(style="margin-bottom : 0px")
+        ul
+
+            li
+                a(href="/") 
+                    img(src= "logo.png" width = "50", height = "50")
+            if loggedIn
+                li
+                    a(href="/user/logout") 로그아웃
+                li
+                    a(href="/user/accountInfo") 회원정보 수정
+                if loggedInUser.userType === "owner"
+                    li
+                        a(href="/owner/dog/info") 강아지 관리(#{loggedInUser.id}보호자님)
+                else
+                    li
+                        a(href="/walker/info") 선생님 정보 관리(#{loggedInUser.id}선생님)
+
+            else
+                li
+                    a(href="/user/login") 로그인/회원가입
+    hr(style="border-top: 2px solid")
+
+            
