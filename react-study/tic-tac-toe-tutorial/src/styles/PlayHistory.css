@@ -1,0 +1,22 @@
+.play-history {
+  width : 300px;
+  height : 300px;
+  margin : auto;
+  flex : 1;
+  }
+
+.play-history-ul{
+    list-style-type : none;
+  }
+
+.play-history-ul-button{
+  width : 150px;
+  height : 30px;
+  border-radius: 15px;
+  border:none;
+  background-color: gray;
+  color: white;
+  font-size : 13px;
+  font-weight: light;
+  margin-bottom : 3px;
+}
